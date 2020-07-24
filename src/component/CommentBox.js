@@ -33,7 +33,7 @@ class CommentBox extends React.Component {
                     />
                     <button type="submit">留言</button>
                 </div>
-                <p>共有{this.props.messageLength}条留言</p>
+                <p>共有{this.props.messageLength}条留言信息</p>
             </form>
         )
     }
