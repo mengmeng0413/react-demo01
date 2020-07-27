@@ -1,21 +1,44 @@
 import React,{ Component } from 'react';
+import {Route,Link} from "react-router-dom"
 import Welecome from './component/Welecome'
 import Game from './component/Game';
-import NameCard from './component/NameCard';
 import LikesButton from './component/LikesButton';
 import DigitalClock from './component/DigitalClock';
 import Comment from './component/Comment';
-const tags = ['111','222','333'];
+import Practice from './component/Practice'
 class App extends Component {
+
     render() {
         return(
             <div>
-                <Welecome/><hr/>
-                <Game/><hr/>
-                <NameCard name="zhao" number={123412341234} isHuman tags={tags} /><hr/>
-                <LikesButton/><hr/>
-                <DigitalClock/><hr/>
-                <Comment/><hr/>
+                <ul>
+                    <li>
+                        <Link to="/welecome">welecome</Link>
+                    </li>
+                    <li>
+                        <Link to="/game">game</Link>
+                    </li>
+                    <li>
+                        <Link to="/likesBtn">likesBtn</Link>
+                    </li>
+                    <li>
+                        <Link to="/digitalClock">digitalClock</Link>
+                    </li>
+                    <li>
+                        <Link to="/comment">comment</Link>
+                    </li>
+                    <li>
+                        <Link to="/practice">practice</Link>
+                    </li>
+                </ul>
+                <switch>
+                    <Route path="/welecome" exact component={Welecome}></Route>
+                    <Route path="/game" component={Game}></Route>
+                    <Route path="/likesBtn" component={LikesButton}></Route>
+                    <Route path="/digitalClock" component={DigitalClock}></Route>
+                    <Route path="/comment" component={Comment}></Route>
+                    <Route path="/practice" component={Practice}></Route>
+                </switch>
             </div>
         )
     }
