@@ -1,13 +1,13 @@
 import React,{ Component } from 'react';
 import { BrowserRouter as Router,Route,Link} from "react-router-dom"
 import router from './router/router';
-import "./App.css"
+import styles from "./App.less"
 import m from "../src/component/material/material";
 class App extends Component {
     render() {
         return(
-            <div className="wrapper">
-                <ul className="left-nav">
+            <div className={styles.wrapper}>
+                <ul className={styles.leftNav}>
                     <li>
                         <Link to="/welecome">welecome</Link>
                     </li>
@@ -27,7 +27,7 @@ class App extends Component {
                         <Link to="/practice">practice</Link>
                     </li>
                 </ul>
-                <div className="right-content">
+                <div className={styles.rightContent}>
                     {
                         router.map((router,index) => {
                             if(router.exact){
