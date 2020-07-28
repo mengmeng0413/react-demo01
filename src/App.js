@@ -1,17 +1,13 @@
 import React,{ Component } from 'react';
-import {Route,Link} from "react-router-dom"
-import Welecome from './component/Welecome'
-import Game from './component/Game';
-import LikesButton from './component/LikesButton';
-import DigitalClock from './component/DigitalClock';
-import Comment from './component/Comment';
-import Practice from './component/Practice'
+import { BrowserRouter as Router,Route,Link} from "react-router-dom"
+import router from './router/router';
+import "./App.css"
+import m from "../src/component/material/material";
 class App extends Component {
-
     render() {
         return(
-            <div>
-                <ul>
+            <div className="wrapper">
+                <ul className="left-nav">
                     <li>
                         <Link to="/welecome">welecome</Link>
                     </li>
@@ -31,14 +27,29 @@ class App extends Component {
                         <Link to="/practice">practice</Link>
                     </li>
                 </ul>
-                <switch>
-                    <Route path="/welecome" exact component={Welecome}></Route>
-                    <Route path="/game" component={Game}></Route>
-                    <Route path="/likesBtn" component={LikesButton}></Route>
-                    <Route path="/digitalClock" component={DigitalClock}></Route>
-                    <Route path="/comment" component={Comment}></Route>
-                    <Route path="/practice" component={Practice}></Route>
-                </switch>
+                <div className="right-content">
+                    {
+                        router.map((router,index) => {
+                            if(router.exact){
+                                return <Route exact key={index} path={router.path}
+                                    render = {
+                                        props =>(
+                                            <router.component {...props} routes = {router.routes}/>
+                                        )
+                                    }
+                                />
+                            }else{
+                                return <Route key = {index} path={router.path}
+                                    render = {
+                                        props =>(
+                                            <router.component {...props} routes = {router.routes}/>
+                                        )
+                                    }
+                                />
+                            }
+                        })
+                    }
+                </div>
             </div>
         )
     }

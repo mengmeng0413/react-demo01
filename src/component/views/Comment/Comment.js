@@ -1,6 +1,6 @@
 import React from 'react'
-import CommentList from './CommentList'
-import CommentBox from './CommentBox'
+import CommentList from './component/CommentList'
+import CommentBox from './component/CommentBox'
 
 class Comment extends React.Component {
     constructor(props) {
