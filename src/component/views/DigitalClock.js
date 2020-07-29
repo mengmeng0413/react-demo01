@@ -22,7 +22,7 @@ class DigitalClock extends React.Component {
     }
     render(){
         return (
-            <div>
+            <div style={{padding: '10px 0 0 10px'}}>
                 <h1>{this.state.date.toLocaleTimeString()}</h1>
             </div>
         )

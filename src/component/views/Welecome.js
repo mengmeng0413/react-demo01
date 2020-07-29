@@ -5,7 +5,7 @@ class Welecome extends React.Component{
         const arr = ['learn', 'sing']
         const isTrue = false
         return(
-            <div className="my-div">
+            <div style={{padding: '10px 0 0 10px'}}>
                 <h1>Hello React</h1>
                 <span>{12+12}</span>
                 <ul>

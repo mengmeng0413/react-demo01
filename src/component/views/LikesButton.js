@@ -15,7 +15,7 @@ class LikesButton extends React.Component {
     }
     render() {
         return(
-            <div>
+            <div style={{padding: '10px 0 0 10px'}}>
                 <button 
                     type="button"
                     onClick={()=>{this.increaseLikes()}}

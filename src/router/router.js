@@ -1,14 +1,19 @@
+import Home from '../component/views/home/Home'
 import Welecome from '../component/views/Welecome'
 import Game from '../component/views/Game/Game';
 import LikesButton from '../component/views/LikesButton';
 import DigitalClock from '../component/views/DigitalClock';
 import Comment from '../component/views/Comment/Comment';
-import Practice from '../component/views/Practice'
+import Practice from '../component/views/Practice';
 const routes = [
     {
-        path: "/welecome",
-        component: Welecome,
+        path: "/",
+        component: Home,
         exact: true
+    },
+    {
+        path: "/welecome",
+        component: Welecome
     },
     {
         path: "/game",

@@ -17,7 +17,7 @@ class Practice extends React.Component {
     render() {
         const tags = ['111','222','333'];
         return (
-            <div>
+            <div style={{padding: '10px 0 0 10px'}}>
                 <ul>
                     <NumList number={this.state.number}/>
                 </ul>

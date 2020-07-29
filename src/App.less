@@ -1,17 +1,35 @@
 .wrapper{
     display: flex;
     width: 100%;
+    height: 100%;
     padding-top:1px;
     justify-content: space-between;
-    .leftNav{
-        width: 15%;
-        padding: 0;
+    .left-nav{
+        width: 13%;
+        padding: 10px 0 0 30px;
+        background-image: url(../src/assests/img/pic3.jpeg);
+        background-size: cover;
+        color: rgba(228,44,100,1);
         li{
             list-style: none;
             padding: 0;
+            font-size: 16px;
+            line-height: 40px;
+            .icon{
+                display: inline-block;
+                padding: 7px 15px 0 0;
+            }
+            a{
+                vertical-align: top;
+            }
+            &:hover{
+                color: rgb(211, 125, 199);
+            }
         }
     }
-    .rightContent{
-        width: 85%;
+    .right-content{
+        width: 87%;
+        background-image: url(../src/assests/img/pic4.jpeg);
+        background-size: contain;
     }
 }

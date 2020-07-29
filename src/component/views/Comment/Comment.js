@@ -24,7 +24,7 @@ class Comment extends React.Component {
     render(){
         const { comments } = this.state
         return (
-            <div>
+            <div style={{padding: '10px 0 0 10px'}}>
                 <CommentList 
                     comments={comments}
                     onclearComment = {(index) => this.clearComment(index)}
