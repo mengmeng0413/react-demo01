@@ -10,7 +10,7 @@ class LikesButton extends React.Component {
     }
     increaseLikes() {
         this.setState({
-            likes: ++this.state.likes
+            likes: this.state.likes+1
         })
     }
     render() {
@@ -20,7 +20,7 @@ class LikesButton extends React.Component {
                     type="button"
                     onClick={()=>{this.increaseLikes()}}
                 >
-                    <span>👍</span>{this.state.likes}
+                    <span role="img" aria-label="excellent">👍</span>{this.state.likes}
                 </button>
             </div>
         )

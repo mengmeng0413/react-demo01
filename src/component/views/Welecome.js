@@ -1,6 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { withRouter } from 'react-router-dom';
 
+const route = {
+    cursor: 'pointer'
+}
 class Welecome extends React.Component{
+    routerTo(){
+        this.props.history.push({
+            pathname: '/game',
+            params:{
+                id: 111
+            }
+        })
+    }
     render() {
         const arr = ['learn', 'sing']
         const isTrue = false
@@ -14,9 +26,10 @@ class Welecome extends React.Component{
                     }
                 </ul>
                 {isTrue ? <span>是true</span> : <span>不是true</span> }
+                <p style={route} onClick={() => {this.routerTo()}}>跳转到Game</p>
             </div>
         )
     }
 }
 
-export default Welecome
+export default withRouter(Welecome)

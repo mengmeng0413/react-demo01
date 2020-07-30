@@ -55,6 +55,12 @@ import "./Game.css"
         xIsNext: true
       };
     }
+
+    componentDidMount(){
+      if(this.props.location.params){
+         console.log('路由跳转--', this.props.location.params.id)
+      }
+    }
   
     handleClick(i) {
       const history = this.state.history.slice(0, this.state.stepNumber + 1);
