@@ -5,6 +5,7 @@ import LikesButton from '../component/views/LikesButton';
 import DigitalClock from '../component/views/DigitalClock';
 import Comment from '../component/views/Comment/Comment';
 import Practice from '../component/views/Practice';
+import Boiling from '../component/views/Boiling/Boiling';
 const routes = [
     {
         path: "/",
@@ -34,6 +35,10 @@ const routes = [
     {
         path: "/practice",
         component: Practice
+    },
+    {
+        path: "/boiling",
+        component: Boiling
     },
 ]
 export default routes
