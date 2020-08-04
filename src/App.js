@@ -5,12 +5,12 @@ import "./App.less";
 import HouseOutlinedIcon from '@material-ui/icons/HouseOutlined';
 import AvTimerOutlinedIcon from '@material-ui/icons/AvTimerOutlined';
 import BubbleChartOutlinedIcon from '@material-ui/icons/BubbleChartOutlined';
-import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
-import LocalFloristOutlinedIcon from '@material-ui/icons/LocalFloristOutlined';
 import HealingOutlinedIcon from '@material-ui/icons/HealingOutlined';
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import SnoozeOutlinedIcon from '@material-ui/icons/SnoozeOutlined';
 import EmojiNatureOutlinedIcon from '@material-ui/icons/EmojiNatureOutlined';
+// import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
+// import LocalFloristOutlinedIcon from '@material-ui/icons/LocalFloristOutlined';
 class App extends Component {
     render() {
         return(
@@ -27,14 +27,6 @@ class App extends Component {
                     <li>
                         <span className="icon"><BubbleChartOutlinedIcon/></span>
                         <Link to="/game">game</Link>
-                    </li>
-                    <li>
-                        <span className="icon"><ColorLensOutlinedIcon/></span>
-                        <Link to="/likesBtn">likesBtn</Link>
-                    </li>
-                    <li>
-                        <span className="icon"><LocalFloristOutlinedIcon/></span>
-                        <Link to="/digitalClock">digitalClock</Link>
                     </li>
                     <li>
                         <span className="icon"><HealingOutlinedIcon/></span>

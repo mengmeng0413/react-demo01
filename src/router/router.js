@@ -1,8 +1,6 @@
 import Home from '../component/views/home/Home'
 import Welecome from '../component/views/Welecome'
 import Game from '../component/views/Game/Game';
-import LikesButton from '../component/views/LikesButton';
-import DigitalClock from '../component/views/DigitalClock';
 import Comment from '../component/views/Comment/Comment';
 import Practice from '../component/views/Practice/Practice';
 import Boiling from '../component/views/Boiling/Boiling';
@@ -20,14 +18,6 @@ const routes = [
     {
         path: "/game",
         component: Game
-    },
-    {
-        path: "/likesBtn",
-        component: LikesButton
-    },
-    {
-        path: "/digitalClock",
-        component: DigitalClock
     },
     {
         path: "/comment",

@@ -2,7 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types';
 import {makeStyles,useTheme}  from '@material-ui/core/styles';
 import SwipeableViews from 'react-swipeable-views';
-import m from '../../material/material'
+import m from '../../material/material';
+import LikesButton from '../LikesButton';
+import DigitalClock from '../DigitalClock';
 import "./Ui.less"
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -68,9 +70,9 @@ function FullWidthTabs() {
                     variant="fullWidth"
                     aria-label="full width tabs example"
                 >
-                    <m.Tab label="Item One" {...a11yProps(0)} />
-                    <m.Tab label="Item Two" {...a11yProps(1)} />
-                    <m.Tab label="Item Three" {...a11yProps(2)} />
+                    <m.Tab label="first" {...a11yProps(0)} />
+                    <m.Tab label="Digital-Clock" {...a11yProps(1)} />
+                    <m.Tab label="Likes-Button" {...a11yProps(2)} />
                 </m.Tabs>
             </m.AppBar>
             <SwipeableViews
@@ -82,10 +84,10 @@ function FullWidthTabs() {
                     Item One
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                    Item Two
+                    <DigitalClock/>
                 </TabPanel>
                 <TabPanel value={value} index={2} dir={theme.direction}>
-                    Item Three
+                    <LikesButton/>
                 </TabPanel>
             </SwipeableViews>
         </div>
