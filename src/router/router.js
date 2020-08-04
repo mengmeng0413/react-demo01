@@ -6,6 +6,7 @@ import DigitalClock from '../component/views/DigitalClock';
 import Comment from '../component/views/Comment/Comment';
 import Practice from '../component/views/Practice/Practice';
 import Boiling from '../component/views/Boiling/Boiling';
+import Ui from '../component/views/Ui/Ui'
 const routes = [
     {
         path: "/",
@@ -40,5 +41,9 @@ const routes = [
         path: "/boiling",
         component: Boiling
     },
+    {
+        path: "/ui",
+        component: Ui
+    }
 ]
 export default routes
