@@ -5,6 +5,7 @@ import SwipeableViews from 'react-swipeable-views';
 import m from '../../material/material';
 import LikesButton from '../LikesButton';
 import DigitalClock from '../DigitalClock';
+import Son from './son.js'
 import "./Ui.less"
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -81,7 +82,7 @@ function FullWidthTabs() {
                 onChangeIndex={handleChangeIndex}
             >
                 <TabPanel value={value} index={0} dir={theme.direction}>
-                    Item One
+                    <Son/>
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
                     <DigitalClock/>
