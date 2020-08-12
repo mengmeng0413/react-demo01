@@ -1,5 +1,5 @@
 import React from 'react'
-import stuModal from './common/stuModal'
+import Dialog from './common/stuDialog'
 import m from '../../material/material.js'
 import "./Ui.less"
 
@@ -25,11 +25,7 @@ class Son extends React.Component{
       ]
     }
   }
-  onRef = (ref) => {
-    this.child = ref
-  }
   addStudent(){
-    this.child.handleOpen()
   }
   del(index){
     this.state.rows.splice(index, 1)
@@ -42,13 +38,7 @@ class Son extends React.Component{
       <div>
         <p className="title">
             学生信息一览表
-            <m.Button 
-              variant="contained" 
-              color="primary" 
-              size="small" 
-              id="add-btn"
-              onClick={()=>{this.addStudent()}}
-            >添加学生</m.Button>
+            <Dialog/>
         </p>
         <m.TableContainer component={m.Paper}>
           <m.Table style={useStyles.table} aria-label="simple table">
@@ -57,7 +47,7 @@ class Son extends React.Component{
                 <m.TableCell>姓名</m.TableCell>
                 <m.TableCell align="center">年龄</m.TableCell>
                 <m.TableCell align="center">体重&nbsp;(Kg)</m.TableCell>
-                <m.TableCell align="center">年纪&nbsp;</m.TableCell>
+                <m.TableCell align="center">年级&nbsp;</m.TableCell>
                 <m.TableCell align="center">班级&nbsp;</m.TableCell>
                 <m.TableCell align="center">操作&nbsp;</m.TableCell>
               </m.TableRow>
@@ -84,7 +74,6 @@ class Son extends React.Component{
             </m.TableBody>
           </m.Table>
         </m.TableContainer>
-        <stuModal onRef={this.onRef}/>
       </div>
     )
   }
