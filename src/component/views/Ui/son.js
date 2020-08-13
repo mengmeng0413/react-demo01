@@ -9,8 +9,8 @@ const useStyles = {
   }
 }
 
-function createData(name, age, fat, grade, classes){
-  return { name, age, fat, grade, classes};
+function createData(name, age, weight, grade, classes){
+  return { name, age, weight, grade, classes};
 }
 
 class Son extends React.Component{
@@ -21,11 +21,16 @@ class Son extends React.Component{
         createData('赵帙', 10, 36, '小学', '三班'),
         createData('林溪', 14, 43, '初中', '二班'),
         createData('季苡忱', 17, 47, '高中', '一班'),
-        createData('白辙', 21, 47, '大学', '一班'),
+        createData('白辙', 21, 47, '大学', '一班')
       ]
     }
   }
-  addStudent(){
+  addStudent(data){
+    let arrData = createData(data.name, parseInt(data.age), parseInt(data.weight), data.grade, data.classes)
+    this.setState({
+      rows: [...this.state.rows, arrData]
+    })
+    this.refs.dialog.handleClose()
   }
   del(index){
     this.state.rows.splice(index, 1)
@@ -38,7 +43,7 @@ class Son extends React.Component{
       <div>
         <p className="title">
             学生信息一览表
-            <Dialog/>
+            <Dialog ref="dialog" addStudent={(data) => this.addStudent(data)}/>
         </p>
         <m.TableContainer component={m.Paper}>
           <m.Table style={useStyles.table} aria-label="simple table">
@@ -60,7 +65,7 @@ class Son extends React.Component{
                       {row.name}
                     </m.TableCell>
                     <m.TableCell align="center">{row.age}</m.TableCell>
-                    <m.TableCell align="center">{row.fat}</m.TableCell>
+                    <m.TableCell align="center">{row.weight}</m.TableCell>
                     <m.TableCell align="center">{row.grade}</m.TableCell>
                     <m.TableCell align="center">{row.classes}</m.TableCell>
                     <m.TableCell align="center">
