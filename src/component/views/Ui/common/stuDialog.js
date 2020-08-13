@@ -31,9 +31,16 @@ class Dialog extends React.Component {
       open: true
     })
   }
-  handleClose(){
+  handleClose() {
     this.setState({
-      open: false
+      open: false,
+      formVal : {
+        name: '',
+        age: '',
+        weight: '',
+        grade: '',
+        classes: ''
+      }
     })
   }
   handleChange(e,attr){
