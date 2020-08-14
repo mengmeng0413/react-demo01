@@ -1,5 +1,10 @@
 import React from 'react'
 import NameCard from '../NameCard'
+import { withRouter } from 'react-router-dom';
+
+const route = {
+    cursor: 'pointer'
+}
 
 function NumList(props){
     const numberList = props.number.map((num) => 
@@ -53,6 +58,7 @@ function WelecomeDialog() {
             message="Thank you for visiting our spacecraft!"/>
     );
 }
+
 class SignUpDialog extends React.Component {
     constructor(props) {
         super(props);
@@ -72,16 +78,20 @@ class SignUpDialog extends React.Component {
     }
     render() {
         return (
-            <Dialog 
-                title="Mas Exploration Program"
-                message="How should we refer to you?">
-                <input 
-                    value={this.state.login}
-                    onChange={this.handleChange}/>
-                <button onClick={this.handleSignUp}>
-                    Sign Me Up!
-                </button>
-            </Dialog>
+            <div style={{padding: '10px 0 10px 10px'}}>
+                <Dialog
+                    title="Mas Exploration Program"
+                    message="How should we refer to you?"
+                >
+                    <input 
+                        value={this.state.login}
+                        onChange={this.handleChange}/>
+                    <button onClick={this.handleSignUp}>
+                        Sign Me Up!
+                    </button>
+                </Dialog>
+            </div>
+            
         )
     }
 }
@@ -109,6 +119,29 @@ function SplitPane(props) {
     )
 }
 
+class RouteTo extends React.Component {
+    constructor(props){
+        super(props);
+    }
+    routTo(){
+        this.props.history.push({
+            pathname: '/game',
+            params:{
+                id: 111
+            }
+        })
+    }
+    render() {
+        const isTrue = false
+        return(
+            <div style={{padding: '10px 0 0 10px'}}>
+                {isTrue ? <span>是true</span> : <span>不是true</span> }
+                <p style={route} onClick={() => {this.routTo()}}>跳转到Game</p>
+            </div>
+        )
+    }
+}
+
 class Practice extends React.Component {
     render() {
         let tags = ['111','222','333'];
@@ -130,9 +163,11 @@ class Practice extends React.Component {
                />
                <hr/>
                <SignUpDialog/>
+               <hr/>
+               <RouteTo history={this.props.history}/>
             </div>
         )
     }
 }   
 
-export default Practice
+export default withRouter(Practice)
