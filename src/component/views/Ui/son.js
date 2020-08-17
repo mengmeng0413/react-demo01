@@ -28,7 +28,7 @@ class Son extends React.Component{
     }
   }
   componentDidMount(){
-    axios.get('//localhost:8686/api',{params: {},jsonp:'handleCallback'})
+    axios.get('//localhost:8686/api')
     .then((res) => {
       this.setState({
         rows: JSON.parse(res.request.responseText).stu

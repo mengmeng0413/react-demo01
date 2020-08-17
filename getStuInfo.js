@@ -5,7 +5,7 @@ const port = 8686;
 let server = http.createServer((req, res) => {
   console.log('req:', req.url, req.method);
   if(req.url.startsWith('/api') && req.method === 'GET') {
-    // let reqStr = '';
+    let reqStr = '';
     req.on('data', (chunk) => reqStr += chunk);
     req.on('end', () => {
     // console.log(reqStr,'接收到的数据')
