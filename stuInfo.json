@@ -1,0 +1,27 @@
+{
+  "stu" : [{
+    "name": "赵帙",
+    "age": 10,
+    "weight": 36,
+    "grade": "小学",
+    "classes": "三班"
+  },{
+    "name": "林溪",
+    "age": 14,
+    "weight": 43,
+    "grade": "初中",
+    "classes": "二班"
+  },{
+    "name": "季苡忱",
+    "age": 17,
+    "weight": 47,
+    "grade": "高中",
+    "classes": "一班"
+  },{
+    "name": "白辙",
+    "age": 21,
+    "weight": 47,
+    "grade": "大学",
+    "classes": "一班"
+  }]
+}

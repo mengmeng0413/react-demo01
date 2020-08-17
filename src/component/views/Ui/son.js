@@ -1,6 +1,7 @@
 import React from 'react'
 import Dialog from './common/stuDialog'
 import m from '../../material/material.js'
+import axios from '../../../model/axios'
 import "./Ui.less"
 
 const useStyles = {
@@ -17,13 +18,33 @@ class Son extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      rows: [
-        createData('赵帙', 10, 36, '小学', '三班'),
-        createData('林溪', 14, 43, '初中', '二班'),
-        createData('季苡忱', 17, 47, '高中', '一班'),
-        createData('白辙', 21, 47, '大学', '一班')
-      ]
+      // rows: [
+      //   createData('赵帙', 10, 36, '小学', '三班'),
+      //   createData('林溪', 14, 43, '初中', '二班'),
+      //   createData('季苡忱', 17, 47, '高中', '一班'),
+      //   createData('白辙', 21, 47, '大学', '一班')
+      // ]
+      rows: []
     }
+  }
+  componentDidMount(){
+    axios.get('//localhost:8686/api',{params: {},jsonp:'handleCallback'})
+    .then((res) => {
+      this.setState({
+        rows: JSON.parse(res.request.responseText).stu
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      this.setState({
+        rows: [
+          createData('赵帙', 10, 36, '小学', '三班'),
+          createData('林溪', 14, 43, '初中', '二班'),
+          createData('季苡忱', 17, 47, '高中', '一班'),
+          createData('白辙', 21, 47, '大学', '一班')
+        ]
+      })
+    })
   }
   addStudent(data){
     let arrData = createData(data.name, parseInt(data.age), parseInt(data.weight), data.grade, data.classes)
