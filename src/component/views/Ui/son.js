@@ -18,16 +18,13 @@ class Son extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      // rows: [
-      //   createData('赵帙', 10, 36, '小学', '三班'),
-      //   createData('林溪', 14, 43, '初中', '二班'),
-      //   createData('季苡忱', 17, 47, '高中', '一班'),
-      //   createData('白辙', 21, 47, '大学', '一班')
-      // ]
       rows: []
     }
   }
   componentDidMount(){
+    this.getStudent()
+  }
+  getStudent(){
     axios.get('//localhost:8686/api')
     .then((res) => {
       this.setState({
@@ -36,22 +33,24 @@ class Son extends React.Component{
     })
     .catch((err) => {
       console.log(err);
-      this.setState({
-        rows: [
-          createData('赵帙', 10, 36, '小学', '三班'),
-          createData('林溪', 14, 43, '初中', '二班'),
-          createData('季苡忱', 17, 47, '高中', '一班'),
-          createData('白辙', 21, 47, '大学', '一班')
-        ]
-      })
     })
   }
   addStudent(data){
     let arrData = createData(data.name, parseInt(data.age), parseInt(data.weight), data.grade, data.classes)
-    this.setState({
-      rows: [...this.state.rows, arrData]
+    axios.post('//localhost:8686/add', arrData)
+    .then((res) => {
+      if(res.request.responseText=='ok'){
+        this.getStudent()
+      }else{
+        alert('数据重复')
+      }
     })
-    this.refs.dialog.handleClose()
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(()=>{
+      this.refs.dialog.handleClose()
+    })
   }
   del(index){
     this.state.rows.splice(index, 1)
