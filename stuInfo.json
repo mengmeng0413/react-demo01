@@ -15,13 +15,6 @@
       "classes": "二班"
     },
     {
-      "name": "季苡忱",
-      "age": 17,
-      "weight": 47,
-      "grade": "高中",
-      "classes": "一班"
-    },
-    {
       "name": "白辙",
       "age": 21,
       "weight": 47,
@@ -48,6 +41,13 @@
       "weight": "57",
       "grade": "大学",
       "classes": "二班"
+    },
+    {
+      "name": "许嵩",
+      "age": "38",
+      "weight": "56",
+      "grade": "无",
+      "classes": "无"
     }
   ]
 }

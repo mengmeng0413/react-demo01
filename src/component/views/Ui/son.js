@@ -36,27 +36,41 @@ class Son extends React.Component{
     })
   }
   addStudent(data){
-    let arrData = createData(data.name, parseInt(data.age), parseInt(data.weight), data.grade, data.classes)
-    axios.post('//localhost:8686/add', arrData)
-    .then((res) => {
-      if(res.request.responseText=='ok'){
-        this.getStudent()
-      }else{
-        alert('数据重复')
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(()=>{
-      this.refs.dialog.handleClose()
-    })
+    if((data.name||data.age||data.weight||data.grade||data.classes) === ''){
+      alert('信息填写不完整！')
+    }else{
+      let arrData = createData(data.name, parseInt(data.age), parseInt(data.weight), data.grade, data.classes)
+      axios.post('//localhost:8686/add', arrData)
+      .then((res) => {
+        if(res.request.responseText==='ok'){
+          this.getStudent()
+        }else{
+          alert('数据重复')
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(()=>{
+        this.refs.dialog.handleClose()
+      })
+    }
   }
-  del(index){
-    this.state.rows.splice(index, 1)
-    this.setState({
-      rows: this.state.rows
-    })
+  del(item){
+    let sure = window.confirm('确认删除吗')
+    if(sure){
+      axios.post('//localhost:8686/del',{name: item.name})
+      .then((res) => {
+        if(res.request.responseText==='ok'){
+          this.getStudent()
+        }else{
+          alert('删除失败')
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
   }
   render(){
     return (
@@ -89,7 +103,7 @@ class Son extends React.Component{
                     <m.TableCell align="center">{row.grade}</m.TableCell>
                     <m.TableCell align="center">{row.classes}</m.TableCell>
                     <m.TableCell align="center">
-                      <m.Button variant="contained" color="secondary" onClick={()=>this.del(index)}>
+                      <m.Button variant="contained" color="secondary" onClick={()=>this.del(row)}>
                         删除
                       </m.Button>
                     </m.TableCell>
