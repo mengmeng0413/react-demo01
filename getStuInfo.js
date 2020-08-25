@@ -23,23 +23,35 @@ let server = http.createServer((req, res) => {
         }
         let student = data.toString();
         student = JSON.parse(student);
-        let isHave = student.stu.find(item =>{
-          return item.name === reqData.name
-        })
-        if(isHave){
-          console.error('重复')
-          res.end('error')
-        }else{
-          student.stu.push(reqData);
-          let str = JSON.stringify(student);
-          fs.writeFile('./stuInfo.json', str, function(err){
-            if(err){
-              console.err(err)
-            }
-            console.log("-------------新增学生成功-------------")
+        if(reqData.bool === 'true'){     //新增学生
+          let isHave = student.stu.find(item =>{
+            return item.name === reqData.name
           })
-          res.end('ok')
+          if(isHave){
+            console.error('重复')
+            res.end('error')
+          }else{
+            student.stu.push(reqData);
+          }
+        }else{                //编辑学生信息
+          student.stu.forEach(item => {
+            if(item.name === reqData.name){
+              for(let key in reqData){
+                if( item[key]){
+                  item[key] = reqData[key]
+                }
+              }
+            }
+          })
         }
+        let str = JSON.stringify(student);
+        fs.writeFile('./stuInfo.json', str, function(err){
+          if(err){
+            console.err(err)
+          }
+          console.log("-------------成功-------------")
+        })
+        res.end('ok')
       })
     })
   }else if(req.url.startsWith('/del') && req.method === 'POST'){
@@ -64,6 +76,21 @@ let server = http.createServer((req, res) => {
           console.log("-------------删除学生成功-------------")
         })
         res.end('ok')
+      })
+    })
+  }else if(req.url.startsWith('/edit') && req.method === 'POST'){
+    req.on('end', () => {
+      let reqData = urlencode.parse(reqStr)
+      fs.readFile('./stuInfo.json', function(err, data){
+        if(err){
+          return console.error(err);
+        }
+        let student = data.toString();
+        student = JSON.parse(student);
+        let isStu = student.stu.find(ele => {
+          return ele.name === reqData.name
+        })
+        res.end(JSON.stringify(isStu))
       })
     })
   }else{

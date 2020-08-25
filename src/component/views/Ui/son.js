@@ -35,12 +35,16 @@ class Son extends React.Component{
       console.log(err);
     })
   }
+  openDialog(bool, item){
+    this.bool = bool
+    this.refs.dialog.handleClickOpen(bool, item)
+  }
   addStudent(data){
     if((data.name||data.age||data.weight||data.grade||data.classes) === ''){
       alert('信息填写不完整！')
     }else{
       let arrData = createData(data.name, parseInt(data.age), parseInt(data.weight), data.grade, data.classes)
-      axios.post('//localhost:8686/add', arrData)
+      axios.post('//localhost:8686/add', Object.assign(arrData, {bool: this.bool}))
       .then((res) => {
         if(res.request.responseText==='ok'){
           this.getStudent()
@@ -72,12 +76,23 @@ class Son extends React.Component{
       })
     }
   }
+  edit(item){
+    this.openDialog(false, item)
+  }
   render(){
     return (
       <div>
         <p className="title">
             学生信息一览表
-            <Dialog ref="dialog" addStudent={(data) => this.addStudent(data)}/>
+            <m.Button 
+              variant="contained" 
+              color="primary" 
+              size="small" 
+              onClick={() => {this.openDialog(true, null)}}
+              style={{display: 'inline-block',float: 'right'}}
+            >
+              添加学生
+            </m.Button>
         </p>
         <m.TableContainer component={m.Paper}>
           <m.Table style={useStyles.table} aria-label="simple table">
@@ -103,7 +118,10 @@ class Son extends React.Component{
                     <m.TableCell align="center">{row.grade}</m.TableCell>
                     <m.TableCell align="center">{row.classes}</m.TableCell>
                     <m.TableCell align="center">
-                      <m.Button variant="contained" color="secondary" onClick={()=>this.del(row)}>
+                      <m.Button variant="contained" color="primary" size="small" onClick={()=>this.edit(row)}>
+                        编辑
+                      </m.Button>
+                      <m.Button variant="contained" color="secondary" size="small" onClick={()=>this.del(row)}>
                         删除
                       </m.Button>
                     </m.TableCell>
@@ -113,6 +131,7 @@ class Son extends React.Component{
             </m.TableBody>
           </m.Table>
         </m.TableContainer>
+        <Dialog ref="dialog" addStudent={(data) => this.addStudent(data)}/>
       </div>
     )
   }

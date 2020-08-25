@@ -43,11 +43,12 @@
       "classes": "二班"
     },
     {
-      "name": "许嵩",
-      "age": "38",
-      "weight": "56",
-      "grade": "无",
-      "classes": "无"
+      "name": "小徐",
+      "age": "21",
+      "weight": "52",
+      "grade": "大专三",
+      "classes": "一班",
+      "bool": "true"
     }
   ]
 }

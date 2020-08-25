@@ -1,7 +1,7 @@
 import React from "react"
 import { makeStyles } from '@material-ui/core/styles' 
 import m from '../../../material/material.js';
-import { name } from "file-loader";
+import axios from '../../../../model/axios'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,10 +26,30 @@ class Dialog extends React.Component {
       }
     }
   }
-  handleClickOpen() {
-    this.setState({
-      open: true
-    })
+  handleClickOpen(bool, item) {
+    if(bool){ //新增
+      this.setState({
+        open: true
+      })
+    }else{   //编辑
+      axios.post('//localhost:8686/edit', {name: item.name})
+      .then(res => {
+        let data = JSON.parse(res.request.responseText)
+        this.setState({
+          open: true,
+          formVal : {
+            name: data.name,
+            age: data.age,
+            weight: data.weight,
+            grade: data.grade,
+            classes: data.classes
+          }
+        })
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }
   }
   handleClose() {
     this.setState({
@@ -55,15 +75,7 @@ class Dialog extends React.Component {
   }
   render() {
     return (
-      <div style={{display: 'inline-block',float: 'right'}}>
-        <m.Button 
-          variant="contained" 
-          color="primary" 
-          size="small" 
-          onClick={() => {this.handleClickOpen()}}
-        >
-          添加学生
-        </m.Button>
+      <div >
         <m.Dialog open={this.state.open} onClose={() => {this.handleClose()}} aria-labelledby="form-dialog-title">
           <m.DialogTitle id="form-dialog-title">请输入学生信息：</m.DialogTitle>
           <m.DialogContent className='form-content'>
