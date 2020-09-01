@@ -1,6 +1,7 @@
 import React from 'react'
 import NameCard from '../NameCard'
 import { withRouter } from 'react-router-dom';
+import PropTypes from 'prop-types'
 
 const route = {
     cursor: 'pointer'
@@ -164,9 +165,37 @@ class NoteList extends React.Component {  //React.Children与this.props.children
     }
 }
 
+class MyTitle extends React.Component {   //PropTypes-验证组件实例的属性是否符合要求
+    render(){ 
+        return (
+            <h1>
+                {this.props.title}
+            </h1>
+        )
+    }
+}
+MyTitle.propTypes = {
+    title: PropTypes.string.isRequired
+}
+
+class MyComponent extends React.Component{  //使用ref获取DOM节点
+    handleClick(){
+        this.refs.myTextInput.focus();
+    }
+    render() {
+        return (
+            <div>
+                <input type="text" ref="myTextInput"/>
+                <input type="button" value="Focus the text input" onClick={() => this.handleClick()}/>
+            </div>
+        )
+    }
+}
+
 class Practice extends React.Component {
     render() {
         let tags = ['111', '222', '333'];
+        let data = 'PropTypes';
         return (
             <div style={{ padding: '10px 0 0 10px' }}>
                 <Li />
@@ -194,6 +223,10 @@ class Practice extends React.Component {
                     <span>hello</span>
                     <span>world</span>
                 </NoteList>
+                <hr/>
+                <MyTitle title={data}></MyTitle>
+                <hr/>
+                <MyComponent />
             </div>
         )
     }
