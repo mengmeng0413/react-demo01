@@ -6,27 +6,27 @@ const route = {
     cursor: 'pointer'
 }
 
-function NumList(props){
-    const numberList = props.number.map((num) => 
+function NumList(props) {
+    const numberList = props.number.map((num) =>
         <li key={num}>{num}</li>
     )
     return numberList;
 }
-class Li extends React.Component{
-    constructor(props){
+class Li extends React.Component {
+    constructor(props) {
         super(props)
         this.state = {
-            number: [1,2,3,4,5]
+            number: [1, 2, 3, 4, 5]
         }
     }
     render() {
         return (
-            <div style={{padding: '10px 0 0 10px'}}>
+            <div style={{ padding: '10px 0 0 10px' }}>
                 <ul>
-                    <NumList number={this.state.number}/>
+                    <NumList number={this.state.number} />
                 </ul>
             </div>
-            
+
         )
     }
 }
@@ -53,9 +53,9 @@ function Dialog(props) {
 }
 function WelecomeDialog() {
     return (
-        <Dialog 
-            title="Welecome" 
-            message="Thank you for visiting our spacecraft!"/>
+        <Dialog
+            title="Welecome"
+            message="Thank you for visiting our spacecraft!" />
     );
 }
 
@@ -68,40 +68,40 @@ class SignUpDialog extends React.Component {
             login: ''
         };
     }
-    handleChange(e){
+    handleChange(e) {
         this.setState({
             login: e.target.value
         })
     }
-    handleSignUp(){
+    handleSignUp() {
         alert(`Welecome aboard, ${this.state.login}!`);
     }
     render() {
         return (
-            <div style={{padding: '10px 0 10px 10px'}}>
+            <div style={{ padding: '10px 0 10px 10px' }}>
                 <Dialog
                     title="Mas Exploration Program"
                     message="How should we refer to you?"
                 >
-                    <input 
+                    <input
                         value={this.state.login}
-                        onChange={this.handleChange}/>
+                        onChange={this.handleChange} />
                     <button onClick={this.handleSignUp}>
                         Sign Me Up!
                     </button>
                 </Dialog>
             </div>
-            
+
         )
     }
 }
 
-function Contacts(){
+function Contacts() {
     return (
         <div>Contacts</div>
     )
 }
-function Chat(){
+function Chat() {
     return (
         <div>Chat</div>
     )
@@ -119,55 +119,84 @@ function SplitPane(props) {
     )
 }
 
-class RouteTo extends React.Component {
-    constructor(props){
+class RouteTo extends React.Component {   //路由跳转
+    constructor(props) {
         super(props);
     }
-    routTo(){
+    routTo() {
         this.props.history.push({
             pathname: '/game',
-            params:{
+            params: {
                 id: 111
             }
         })
     }
     render() {
         const isTrue = false
-        return(
-            <div style={{padding: '10px 0 0 10px'}}>
-                {isTrue ? <span>是true</span> : <span>不是true</span> }
-                <p style={route} onClick={() => {this.routTo()}}>跳转到Game</p>
+        return (
+            <div style={{ padding: '10px 0 0 10px' }}>
+                {isTrue ? <span>是true</span> : <span>不是true</span>}
+                <p style={route} onClick={() => { this.routTo() }}>跳转到Game</p>
             </div>
+        )
+    }
+}
+
+class HelloMessage extends React.Component { //this.props
+    render(){
+        return (
+            <h1>Hello {this.props.name}</h1>
+        )
+    }
+}
+
+class NoteList extends React.Component {  //React.Children与this.props.children
+    render(){
+        return (
+            <ol>
+                {
+                    React.Children.map(this.props.children, function(child){
+                        return <li>{child}</li>
+                    })
+                }
+            </ol>
         )
     }
 }
 
 class Practice extends React.Component {
     render() {
-        let tags = ['111','222','333'];
+        let tags = ['111', '222', '333'];
         return (
-            <div style={{padding: '10px 0 0 10px'}}>
-               <Li/>
-               <hr/>
-               <NameCard name="zhao" number={123412341234} isHuman tags={tags}/>
-               <hr/>
-               <WelecomeDialog/>
-               <hr/>
-               <SplitPane 
+            <div style={{ padding: '10px 0 0 10px' }}>
+                <Li />
+                <hr />
+                <NameCard name="zhao" number={123412341234} isHuman tags={tags} />
+                <hr />
+                <WelecomeDialog />
+                <hr />
+                <SplitPane
                     left={
                         <Contacts />
                     }
                     right={
                         <Chat />
                     }
-               />
-               <hr/>
-               <SignUpDialog/>
-               <hr/>
-               <RouteTo history={this.props.history}/>
+                />
+                <hr />
+                <SignUpDialog />
+                <hr />
+                <RouteTo history={this.props.history} />
+                <hr/>
+                <HelloMessage name="xiaoZhao"/>
+                <hr/>
+                <NoteList>
+                    <span>hello</span>
+                    <span>world</span>
+                </NoteList>
             </div>
         )
     }
-}   
+}
 
 export default withRouter(Practice)
