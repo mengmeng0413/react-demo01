@@ -144,7 +144,7 @@ class RouteTo extends React.Component {   //路由跳转
 }
 
 class HelloMessage extends React.Component { //this.props
-    render(){
+    render() {
         return (
             <h1>Hello {this.props.name}</h1>
         )
@@ -152,11 +152,11 @@ class HelloMessage extends React.Component { //this.props
 }
 
 class NoteList extends React.Component {  //React.Children与this.props.children
-    render(){
+    render() {
         return (
             <ol>
                 {
-                    React.Children.map(this.props.children, function(child){
+                    React.Children.map(this.props.children, function (child) {
                         return <li>{child}</li>
                     })
                 }
@@ -166,7 +166,7 @@ class NoteList extends React.Component {  //React.Children与this.props.children
 }
 
 class MyTitle extends React.Component {   //PropTypes-验证组件实例的属性是否符合要求
-    render(){ 
+    render() {
         return (
             <h1>
                 {this.props.title}
@@ -178,42 +178,42 @@ MyTitle.propTypes = {
     title: PropTypes.string.isRequired
 }
 
-class MyComponent extends React.Component{  //使用ref获取DOM节点
-    handleClick(){
+class MyComponent extends React.Component {  //使用ref获取DOM节点
+    handleClick() {
         this.refs.myTextInput.focus();
     }
     render() {
         return (
-            <div  style={{ padding: '10px 0 10px 10px' }}>
-                <input type="text" ref="myTextInput"/>
-                <input type="button" value="Focus the text input" onClick={() => this.handleClick()}/>
+            <div style={{ padding: '10px 0 10px 10px' }}>
+                <input type="text" ref="myTextInput" />
+                <input type="button" value="Focus the text input" onClick={() => this.handleClick()} />
             </div>
         )
     }
 }
 
-class LikeButton extends React.Component{     //修改state的值
-    constructor(props){
+class LikeButton extends React.Component {     //修改state的值
+    constructor(props) {
         super(props);
         this.state = {
             liked: false
         }
     }
-    handleClick(){
+    handleClick() {
         this.setState({
             liked: !this.state.liked
         })
     }
-    render(){
+    render() {
         let text = this.state.liked ? 'like' : 'haven\'t liked';
-        return(
+        return (
             <p style={{ padding: '10px 0 10px 10px' }} onClick={() => this.handleClick()}>You {text} this. Click to toggle.</p>
         )
     }
 }
 
-class Input extends React.Component{      //表单
-    constructor(props){
+class Input extends React.Component {      //表单
+    constructor(props) {
         super(props);
         this.state = {
             value: 'Hello!'
@@ -224,13 +224,41 @@ class Input extends React.Component{      //表单
             value: event.target.value
         })
     }
-    render(){
+    render() {
         let value = this.state.value
         return (
-            <div>
-                <input type="text" value={value} onChange={(event) => this.handleChange(event)}/>
+            <div style={{ padding: '10px 0 10px 10px' }}>
+                <input type="text" value={value} onChange={(event) => this.handleChange(event)} />
                 <p>{value}</p>
-            </div>   
+            </div>
+        )
+    }
+}
+
+class Hello extends React.Component {  //组件的生命周期
+    constructor(props) {
+        super(props);
+        this.state = {
+            opacity: 1.0
+        }
+    }
+    componentDidMount(){
+        this.timer = setInterval(() => {
+            let opacity = this.state.opacity;
+            opacity -= 0.5;
+            if(opacity < 0.1){
+                opacity = 1.0
+            }
+            this.setState({
+                opacity: opacity
+            })
+        }, 500);
+    }
+    render() {
+        return (
+            <div style={{ opacity: this.state.opacity, padding: '10px 0 10px 10px' }}>
+                Hello {this.props.name}
+            </div>
         )
     }
 }
@@ -259,21 +287,23 @@ class Practice extends React.Component {
                 <SignUpDialog />
                 <hr />
                 <RouteTo history={this.props.history} />
-                <hr/>
-                <HelloMessage name="xiaoZhao"/>
-                <hr/>
+                <hr />
+                <HelloMessage name="xiaoZhao" />
+                <hr />
                 <NoteList>
                     <span>hello</span>
                     <span>world</span>
                 </NoteList>
-                <hr/>
-                <MyTitle title={data}/>
-                <hr/>
+                <hr />
+                <MyTitle title={data} />
+                <hr />
                 <MyComponent />
-                <hr/>
+                <hr />
                 <LikeButton />
-                <hr/>
+                <hr />
                 <Input />
+                <hr />
+                <Hello />
             </div>
         )
     }
