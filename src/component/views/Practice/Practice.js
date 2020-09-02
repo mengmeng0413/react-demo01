@@ -184,10 +184,53 @@ class MyComponent extends React.Component{  //使用ref获取DOM节点
     }
     render() {
         return (
-            <div>
+            <div  style={{ padding: '10px 0 10px 10px' }}>
                 <input type="text" ref="myTextInput"/>
                 <input type="button" value="Focus the text input" onClick={() => this.handleClick()}/>
             </div>
+        )
+    }
+}
+
+class LikeButton extends React.Component{     //修改state的值
+    constructor(props){
+        super(props);
+        this.state = {
+            liked: false
+        }
+    }
+    handleClick(){
+        this.setState({
+            liked: !this.state.liked
+        })
+    }
+    render(){
+        let text = this.state.liked ? 'like' : 'haven\'t liked';
+        return(
+            <p style={{ padding: '10px 0 10px 10px' }} onClick={() => this.handleClick()}>You {text} this. Click to toggle.</p>
+        )
+    }
+}
+
+class Input extends React.Component{      //表单
+    constructor(props){
+        super(props);
+        this.state = {
+            value: 'Hello!'
+        }
+    }
+    handleChange(event) {
+        this.setState({
+            value: event.target.value
+        })
+    }
+    render(){
+        let value = this.state.value
+        return (
+            <div>
+                <input type="text" value={value} onChange={(event) => this.handleChange(event)}/>
+                <p>{value}</p>
+            </div>   
         )
     }
 }
@@ -224,9 +267,13 @@ class Practice extends React.Component {
                     <span>world</span>
                 </NoteList>
                 <hr/>
-                <MyTitle title={data}></MyTitle>
+                <MyTitle title={data}/>
                 <hr/>
                 <MyComponent />
+                <hr/>
+                <LikeButton />
+                <hr/>
+                <Input />
             </div>
         )
     }
