@@ -263,6 +263,26 @@ class Hello extends React.Component {  //组件的生命周期
     }
 }
 
+class TimeOut extends React.Component {   //setTimeOut
+    componentDidMount(){
+        let id1 = setTimeout(() => {
+            console.log('test setTimeout1~')
+        },3000)
+        let id2 = setTimeout(() => {
+            console.log('test setTimeout2~')
+        },4000)
+        clearTimeout(id2)
+        console.log('id---', id1, id2)   //id1和2是定时器的id
+    }
+    render() {
+        return (
+            <div style={{ padding: '10px 0 0 10px' }}>
+                setTimeOut
+            </div>
+        )
+    }
+}
+
 class Practice extends React.Component {
     render() {
         let tags = ['111', '222', '333'];
@@ -304,6 +324,8 @@ class Practice extends React.Component {
                 <Input />
                 <hr />
                 <Hello />
+                <hr/>
+                <TimeOut />
             </div>
         )
     }
