@@ -9,7 +9,7 @@ import HealingOutlinedIcon from '@material-ui/icons/HealingOutlined';
 import SentimentSatisfiedOutlinedIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import SnoozeOutlinedIcon from '@material-ui/icons/SnoozeOutlined';
 import EmojiNatureOutlinedIcon from '@material-ui/icons/EmojiNatureOutlined';
-// import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
+import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined';
 // import LocalFloristOutlinedIcon from '@material-ui/icons/LocalFloristOutlined';
 class App extends Component {
     render() {
@@ -43,6 +43,10 @@ class App extends Component {
                     <li>
                         <span className="icon"><EmojiNatureOutlinedIcon/></span>
                         <Link to="/ui">uuii</Link>
+                    </li>
+                    <li>
+                        <span className="icon"><ColorLensOutlinedIcon/></span>
+                        <Link to="/father">father</Link>
                     </li>
                 </ul>
                 <div className="right-content">
