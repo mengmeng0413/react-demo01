@@ -283,6 +283,23 @@ class TimeOut extends React.Component {   //setTimeOut
     }
 }
 
+class TryProp extends React.Component {
+    constructor(props){
+        super(props);
+        this.state={
+            own: "this is own message"
+        }
+    }
+    render(){
+        return (
+            <div>
+                <p>{this.props.msg}</p>
+                <p>{this.state.own}</p>
+            </div>
+        )
+    }
+}
+
 class Practice extends React.Component {
     render() {
         let tags = ['111', '222', '333'];
@@ -326,6 +343,8 @@ class Practice extends React.Component {
                 <Hello />
                 <hr/>
                 <TimeOut />
+                <hr/>
+                <TryProp msg="give you msg"/>
             </div>
         )
     }
