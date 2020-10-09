@@ -10,12 +10,17 @@ class Tick extends React.Component{
     }
   }
   componentDidMount(){
-    setInterval(()=>{
+    this.timeID = setInterval(()=>{
       this.setState({
         date: new Date().toLocaleTimeString()
       })
     },1000)
   }
+
+  compomentWillUnmount(){
+    clearInterval(this.timeID)
+  }
+
   render(){
     return(
       <div>
