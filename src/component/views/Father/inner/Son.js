@@ -31,6 +31,28 @@ class Tick extends React.Component{
   }
 }
 
+class Toggle extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      isToggleOn:true
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick(){
+    this.setState(state => ({
+      isToggleOn: !state.isToggleOn
+    }))
+  }
+  render(){
+    return (
+      <m.Button variant="outlined" color="primary" onClick={this.handleClick}>
+        {this.state.isToggleOn ? 'ON' : 'OFF'}
+      </m.Button>
+    )
+  }
+}
+
 class Son extends React.Component{
   constructor(props){
     super(props);
@@ -57,6 +79,8 @@ class Son extends React.Component{
         <m.Button variant="outlined" color="primary" onClick={() => {this.getFatherVal()}}>子获取父变量的值</m.Button>
         <hr/>
         <Tick/>
+        <hr/>
+        <Toggle/>
       </div>
     )
   }
