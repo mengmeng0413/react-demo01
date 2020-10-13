@@ -96,18 +96,30 @@ class LoginControl extends React.Component {
   }
   render() {
     const isLoggedIn = this.state.isLoggedIn;
-    let button;
-    if(isLoggedIn) {
-      button = <LogoutButton onClick={this.handleLogoutClick}/>;
-    }else{
-      button = <LoginButton onClick={this.handleLoginClick}/>;
-    }
     return(
       <div>
-        <Greeting isLoggedIn={isLoggedIn}/>
-        {button}
+        The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
+        <p>
+          {isLoggedIn
+            ? <LogoutButton onClick={this.handleLogoutClick} />
+            : <LoginButton onClick={this.handleLoginClick} />
+          }
+        </p>
       </div>
     )
+    
+    // let button;
+    // if(isLoggedIn) {
+    //   button = <LogoutButton onClick={this.handleLogoutClick}/>;
+    // }else{
+    //   button = <LoginButton onClick={this.handleLoginClick}/>;
+    // }
+    // return(
+    //   <div>
+    //     <Greeting isLoggedIn={isLoggedIn}/>
+    //     {button}
+    //   </div>
+    // )
   }
 }
 
