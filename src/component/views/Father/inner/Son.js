@@ -123,6 +123,39 @@ class LoginControl extends React.Component {
   }
 }
 
+function WarningBanner(props) {
+  if(!props.warn) {
+    return null;
+  }
+  return (
+    <div className="warning">
+      Warning!
+    </div>
+  )
+}
+class Page extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {showWarning:true};
+    this.handleToggleClick = this.handleToggleClick.bind(this);
+  }
+  handleToggleClick() {
+    this.setState(state => ({
+      showWarning: !state.showWarning 
+    }));
+  }
+  render() {
+    return (
+      <div>
+        <WarningBanner warn={this.state.showWarning}/>
+        <button onClick={this.handleToggleClick}>
+          {this.state.showWarning ? 'Hide' : 'Show'}
+        </button>
+      </div>
+    )
+  }
+}
+
 class Son extends React.Component{
   constructor(props){
     super(props);
@@ -148,11 +181,13 @@ class Son extends React.Component{
         <m.Button variant="outlined" color="primary" onClick={() => {this.getFatherMethods()}}>子调用父的方法</m.Button>
         <m.Button variant="outlined" color="primary" onClick={() => {this.getFatherVal()}}>子获取父变量的值</m.Button>
         <hr/>
-        <Tick/>
+        <Tick />
         <hr/>
-        <Toggle/>
+        <Toggle />
         <hr/>
-        <LoginControl/>
+        <LoginControl />
+        <hr/>
+        <Page />
       </div>
     )
   }
