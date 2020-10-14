@@ -156,6 +156,20 @@ class Page extends React.Component{
   }
 }
 
+function ListItem(props) {
+  return <li>{props.value}</li>;
+}
+function NumberList(props) {
+  const numbers = props.numbers;
+  return (
+    <ul>
+      {numbers.map((number) => 
+        <ListItem key={number.toString()} value={number}/>
+      )}
+    </ul>
+  )
+}
+
 class Son extends React.Component{
   constructor(props){
     super(props);
@@ -188,6 +202,8 @@ class Son extends React.Component{
         <LoginControl />
         <hr/>
         <Page />
+        <hr/>
+        <NumberList numbers={[1,2,3,4,5]}/>
       </div>
     )
   }
