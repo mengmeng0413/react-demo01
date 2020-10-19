@@ -1,5 +1,6 @@
 import React from 'react'
 import m from '../../../material/material'
+import Muti from './Muti'
 
 
 class Tick extends React.Component{
@@ -292,6 +293,8 @@ class Son extends React.Component{
         <NameForm />
         <hr/>
         <Reservation />
+        <hr/>
+        <Muti />
       </div>
     )
   }
