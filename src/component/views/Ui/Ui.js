@@ -5,8 +5,9 @@ import SwipeableViews from 'react-swipeable-views';
 import m from '../../material/material';
 import LikesButton from '../LikesButton';
 import DigitalClock from '../DigitalClock';
-import StuInfo from './stuInfo'
-import "./Ui.less"
+import StuInfo from './stuInfo';
+import Product from './product';
+import "./Ui.less";
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -72,8 +73,8 @@ function FullWidthTabs() {
                     aria-label="full width tabs example"
                 >
                     <m.Tab label="first" {...a11yProps(0)} />
-                    <m.Tab label="Digital-Clock" {...a11yProps(1)} />
-                    <m.Tab label="Likes-Button" {...a11yProps(2)} />
+                    <m.Tab label="Digital-Clock与Likes-Button" {...a11yProps(1)} />
+                    <m.Tab label="react哲学" {...a11yProps(2)} />
                 </m.Tabs>
             </m.AppBar>
             <SwipeableViews
@@ -82,13 +83,14 @@ function FullWidthTabs() {
                 onChangeIndex={handleChangeIndex}
             >
                 <TabPanel value={value} index={0} dir={theme.direction}>
-                    <StuInfo/>
+                    <StuInfo />
                 </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
-                    <DigitalClock/>
+                    <DigitalClock />
+                    <LikesButton />
                 </TabPanel>
                 <TabPanel value={value} index={2} dir={theme.direction}>
-                    <LikesButton/>
+                    <Product />
                 </TabPanel>
             </SwipeableViews>
         </div>
