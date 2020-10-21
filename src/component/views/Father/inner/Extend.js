@@ -34,20 +34,55 @@ function SplitPane(props) {
   )
 }
 
+function Dialog(props) {
+  return(
+    <FancyBorder color="blue">
+      <h1 className="Dialog-title">
+        {props.title}
+      </h1>
+      <p class="Dialog-message">
+        {props.message}
+      </p>
+      {props.children}
+    </FancyBorder>
+  )
+}
+
+class SignUpDialog extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSignUp = this.handleSignUp.bind(this);
+    this.state = {login: ''};
+  }
+  handleChange(e) {
+    this.setState({login: e.target.value});
+  }
+  handleSignUp() {
+    alert(`Welcome aboard,${this.state.login}!`);
+  }
+  render() {
+    return (
+      <Dialog title="Mars Exploration program"
+              message="How should we refer to you?"
+      >
+        <input value={this.state.login}
+                onChange={this.handleChange}/>
+        <button onClick={this.handleSignUp}>
+          Sign Me Up!
+        </button>
+      </Dialog>
+    )
+  }
+}
+
 function WelecomeDialog() {
   return(
     <div>
-      <FancyBorder color="blue">
-        <h1 className="Dialog-title">
-          Welecome
-        </h1>
-        <p className="Dialog-message">
-          Thank you for visiting our spacecraft!
-        </p>
-      </FancyBorder>
-      <SplitPane left={<Contacts />} right={<Chat/>}/>
+      <SignUpDialog />
+      <hr/>
+      <SplitPane left={<Contacts />} right={<Chat />}/>
     </div>
-    
   )
 }
 
